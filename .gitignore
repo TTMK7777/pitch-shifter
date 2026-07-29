@@ -1,0 +1,23 @@
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# エディタ
+.vscode/
+.idea/
+*.swp
+
+# 配布用パッケージ
+*.zip
+*.crx
+*.pem
+dist/
+
+# 依存（現状は依存ゼロだが将来のビルド導入に備える）
+node_modules/
+
+# ローカル作業用
+.env
+.env.*
+scratch/

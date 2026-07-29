@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Pitch Shifter",
+  "version": "1.0",
+  "description": "動画・音楽のピッチをリアルタイムで変更",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["soundtouch-worklet.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
