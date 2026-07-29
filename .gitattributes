@@ -1,0 +1,26 @@
+# 改行コードを固定する。
+#
+# Windows 2 台で同じリポジトリを触るため、core.autocrlf の設定差で
+# 「clone しただけで全行が差分になる」事故を防ぐ。リポジトリ内は LF、
+# 作業ツリーも LF に統一する（拡張は JS/JSON/HTML のみで、LF 前提の
+# エディタ・ブラウザしか関与しないため揃えて困る箇所がない）。
+* text=auto eol=lf
+
+# 明示しておく。text=auto の推測に任せない。
+*.js    text eol=lf
+*.json  text eol=lf
+*.html  text eol=lf
+*.svg   text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+
+# バイナリ。差分・改行変換の対象から外す。
+*.png   binary
+*.jpg   binary
+*.crx   binary
+*.pem   binary
+*.zip   binary
+
+# 同梱している第三者コード。差分レビューの対象外として明示する
+# （SoundTouchJS を無改変で置いているだけで、こちらで編集しない）。
+soundtouch-worklet.js linguist-vendored
