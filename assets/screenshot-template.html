@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+  Chrome ウェブストア「スクリーンショット」(1280x800) の合成テンプレート。
+
+  ストアのスクリーンショットは 1280x800 の全面（角丸・余白なし）が要件だが、
+  この拡張のポップアップは縦長で、そのまま撮ると比率が合わない。
+  そこで「実際にキャプチャした画像」をこのテンプレートの中央に置き、
+  余白をブランド色で埋めて 1280x800 に仕立てる。
+
+  使い方:
+    1. 実際の操作画面をキャプチャし、assets/capture.png として保存する
+       (Windows なら Win+Shift+S → 貼り付けて保存)
+    2. 下の CAPTION を差し替える
+    3. assets/README.md の「スクリーンショット」節のコマンドを実行する
+-->
+<meta charset="utf-8">
+<title>Pitch Shifter — store screenshot</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 1280px; height: 800px;
+    overflow: hidden;
+    background: #1E1B4B;
+    font-family: "Segoe UI", "Yu Gothic UI", "Hiragino Sans", sans-serif;
+  }
+  .stage {
+    width: 1280px; height: 800px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 32px;
+    /* 中央から外に向かってわずかに明るくする。単色よりキャプチャが締まって見える */
+    background: radial-gradient(ellipse at 50% 38%, #312E81 0%, #1E1B4B 70%);
+  }
+  .caption {
+    color: #fff;
+    font-size: 40px; font-weight: 700;
+    letter-spacing: .01em;
+    text-align: center;
+  }
+  .sub {
+    color: #A5B4FC;
+    font-size: 20px; font-weight: 400;
+    margin-top: -18px;
+  }
+  .shot {
+    max-width: 1100px; max-height: 520px;
+    border-radius: 12px;
+    /* 影で背景から浮かせる。ストア側で圧縮されても輪郭が残る程度に濃くする */
+    box-shadow: 0 24px 64px rgba(0,0,0,.55);
+    display: block;
+  }
+  /* capture.png が未用意でも 1280x800 の構図確認ができるようにする代替枠 */
+  .placeholder {
+    width: 760px; height: 440px;
+    border: 3px dashed #6366F1; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #A5B4FC; font-size: 22px; text-align: center; line-height: 1.7;
+  }
+</style>
+
+<div class="stage">
+  <!-- CAPTION: 差し替える -->
+  <div class="caption">速度を変えずに、音程だけ変える</div>
+  <div class="sub">±1 セント単位・2 種のピッチエンジン・外部通信なし</div>
+
+  <img class="shot" src="capture.png" alt=""
+       onerror="this.outerHTML='&lt;div class=\'placeholder\'&gt;assets/capture.png が未用意です&lt;br&gt;実際の操作画面を撮って同名で保存してください&lt;/div&gt;'">
+</div>

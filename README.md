@@ -135,8 +135,10 @@ DOM の読み取り・改変や、ページ内容の送信は行いません。
 
 ### 公開前に対応すべき項目（メモ）
 
-- アイコン（`icons/`）が未同梱。ウェブストア公開には必須
-- スクリーンショット未用意
+- **スクリーンショット（1280×800）の元キャプチャが未用意**。実際の再生画面が必要なため、
+  合成テンプレートまでは用意済み（[`assets/README.md`](assets/README.md) の「スクリーンショット」節）
+- マーキータイル（1400×560）未作成。任意項目だが、無いと「注目」枠に載る資格がない
+- 開発者登録料の支払いと開発者アカウントの作成
 
 ---
 
@@ -147,7 +149,13 @@ manifest.json          Manifest V3 定義
 content.js             ページに注入。音声グラフの構築と制御（本体）
 popup.html / popup.js  操作 UI とメッセージ送信
 soundtouch-worklet.js  SoundTouchJS 公式 AudioWorklet（WSOLA エンジン／無改変同梱）
+icons/                 拡張に同梱する PNG（16/32/48/128）
+assets/                画像の原本（SVG / 合成テンプレート）と書き出し手順
+store/                 ウェブストア申請用の画像
 ```
+
+画像素材はすべて `assets/` の SVG から headless Chrome で再生成できます
+（追加の依存パッケージなし）。手順とサイズ要件は [`assets/README.md`](assets/README.md) を参照。
 
 ### 音声グラフ
 

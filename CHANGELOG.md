@@ -11,6 +11,13 @@
   `CHANGELOG.md` / `.gitignore` を追加
 - README を全面拡充（権限とプライバシー、既知の制限、メッセージ契約、想定ユースケースを追記）
 
+- 拡張アイコンを追加（`assets/icon.svg` が原本、`icons/icon{16,32,48,128}.png` を書き出し）。
+  `manifest.json` に `icons` と `action.default_icon` / `default_title` を配線
+- ウェブストア用の小プロモーション画像 440×280（`assets/promo-small.svg` →
+  `store/promo-small-440x280.png`）
+- スクリーンショット（1280×800）の合成テンプレート `assets/screenshot-template.html`
+- `assets/README.md` — 画像のサイズ要件と headless Chrome での書き出し手順、既知の罠
+
 ### Removed
 - **未使用だった `storage` 権限を `manifest.json` から削除**。コード上 `chrome.storage` は
   一度も呼ばれておらず、宣言だけが残っていた。要求する権限を実際に使う分だけに絞る
