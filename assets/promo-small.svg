@@ -1,0 +1,43 @@
+<!--
+  Chrome ウェブストア「小プロモーション画像」原本（440x280）
+
+  https://developer.chrome.com/docs/webstore/images
+  これが無い拡張は、ある拡張より後ろに表示される。
+
+  グリフは icon.svg と同一形状を再利用している（128 キャンバス基準の座標を
+  translate で移動しているだけ。scale は掛けないので線幅が変わらない）。
+  icon.svg 側を修正したら、このファイルの <g id="glyph"> も同じ内容に揃える。
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 440 280">
+  <title>Pitch Shifter</title>
+
+  <!-- 地: アイコンの色より暗い同系色。アイコンが浮いて見えるようにする -->
+  <rect width="440" height="280" fill="#1E1B4B"/>
+
+  <!-- アイコン（96x96 を上部中央に配置: x 172..268, y 30..126） -->
+  <g id="glyph" transform="translate(156,14)">
+    <rect x="16" y="16" width="96" height="96" rx="24" fill="#4F46E5"/>
+    <g fill="#FFFFFF">
+      <ellipse cx="51" cy="83" rx="14" ry="10.5" transform="rotate(-20 51 83)"/>
+      <rect x="61.5" y="37" width="6.5" height="47"/>
+      <path d="M68 37 C78.5 41.5 80.5 51 77 58.5 C79 50 75.5 44.5 68 47.5 Z"/>
+    </g>
+    <g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M84 53 L92.5 44.5 L101 53"/>
+      <path d="M84 71 L92.5 79.5 L101 71"/>
+    </g>
+  </g>
+
+  <!-- 文字。日本語はシステムフォント（Windows なら Yu Gothic UI）にフォールバックさせる -->
+  <text x="220" y="178" text-anchor="middle"
+        font-family="Segoe UI, Yu Gothic UI, Hiragino Sans, sans-serif"
+        font-size="38" font-weight="700" fill="#FFFFFF">Pitch Shifter</text>
+
+  <text x="220" y="212" text-anchor="middle"
+        font-family="Segoe UI, Yu Gothic UI, Hiragino Sans, sans-serif"
+        font-size="19" font-weight="400" fill="#C7D2FE">速度を変えずに、音程だけ。</text>
+
+  <text x="220" y="246" text-anchor="middle"
+        font-family="Segoe UI, Yu Gothic UI, Hiragino Sans, sans-serif"
+        font-size="14" font-weight="400" fill="#818CF8">外部通信なし・ブラウザ内で完結</text>
+</svg>

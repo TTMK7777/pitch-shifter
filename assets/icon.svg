@@ -1,0 +1,37 @@
+<!--
+  Pitch Shifter 拡張アイコン（原本）
+
+  キャンバス 128x128 のうち、絵柄は 96x96（x,y = 16..112）に収め、
+  周囲 16px は透明余白とする。これは Chrome ウェブストアの
+  「128x128 のうち絵柄 96x96 + 16px パディング」要件に合わせたもの。
+  https://developer.chrome.com/docs/webstore/images
+
+  16px でも潰れないよう、単色地 + 白抜きの太いグリフのみで構成する。
+  グラデーション・細線・影は使わない。
+-->
+<!--
+  width/height は意図的に指定しない。viewBox のみにしておくと、レンダラの
+  ビューポートに追従して拡大縮小される（固定値を持つと headless Chrome での
+  書き出し時に「縮小」ではなく「切り取り」になる）。
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <title>Pitch Shifter</title>
+
+  <!-- 地: 丸角四角（単色）。明背景・暗背景の両方で視認できる中間の彩度を選ぶ -->
+  <rect x="16" y="16" width="96" height="96" rx="24" fill="#4F46E5"/>
+
+  <g fill="#FFFFFF">
+    <!-- 八分音符: 玉 -->
+    <ellipse cx="51" cy="83" rx="14" ry="10.5" transform="rotate(-20 51 83)"/>
+    <!-- 八分音符: 棒 -->
+    <rect x="61.5" y="37" width="6.5" height="47"/>
+    <!-- 八分音符: 旗 -->
+    <path d="M68 37 C78.5 41.5 80.5 51 77 58.5 C79 50 75.5 44.5 68 47.5 Z"/>
+  </g>
+
+  <!-- 上下の矢印: 「音程を上下させる」ことを示す。太めの chevron 2 本 -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M84 53 L92.5 44.5 L101 53"/>
+    <path d="M84 71 L92.5 79.5 L101 71"/>
+  </g>
+</svg>
