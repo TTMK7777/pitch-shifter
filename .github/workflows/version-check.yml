@@ -1,0 +1,41 @@
+# タグと manifest.json の version がずれた状態でリリースされるのを防ぐ。
+#
+# 拡張はストア側が manifest の version でしか更新を判定しないため、
+# 「タグは打ったが manifest を上げ忘れ、更新がユーザーに届かない」が典型事故。
+# タグ push 時に必ず突合し、一致しなければ落とす。
+name: version check
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+# 読み取りのみ。書き込み権限は与えない。
+permissions:
+  contents: read
+
+jobs:
+  manifest-matches-tag:
+    runs-on: ubuntu-latest
+    steps:
+      # actions/checkout v4 を SHA でピンする（タグは動かせるため）
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: タグと manifest.json の version を突合
+        run: |
+          set -euo pipefail
+
+          tag="${GITHUB_REF_NAME#v}"
+
+          # json.load が兼ねて JSON 妥当性チェックにもなる（壊れていればここで落ちる）
+          manifest="$(python3 -c "import json;print(json.load(open('manifest.json'))['version'])")"
+
+          echo "tag      = ${GITHUB_REF_NAME}  (version 部分: ${tag})"
+          echo "manifest = ${manifest}"
+
+          if [ "${tag}" != "${manifest}" ]; then
+            echo "::error::タグ ${GITHUB_REF_NAME} と manifest.json の version (${manifest}) が一致しません。どちらかを直してタグを打ち直してください。"
+            exit 1
+          fi
+
+          echo "一致を確認しました。"
