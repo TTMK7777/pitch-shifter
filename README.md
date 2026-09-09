@@ -10,7 +10,7 @@
 | 項目 | 内容 |
 |------|------|
 | 種別 | Chrome 拡張機能 (Manifest V3) |
-| バージョン | 1.0 |
+| バージョン | 1.1 |
 | 実装 | 素の JavaScript のみ（ビルド不要・依存パッケージなし） |
 | ピッチ可変幅 | −1200 〜 +1200 セント（±1 オクターブ）、1 セント刻み |
 | 外部通信 | なし |
@@ -133,12 +133,18 @@ DOM の読み取り・改変や、ページ内容の送信は行いません。
 | 6 | 1 つのメディア要素に対し `createMediaElementSource` は 1 回しか呼べない。他の拡張が先に掴んでいると本拡張は無効になる | 確認済み |
 | 7 | DRM 保護コンテンツ（Netflix 等）や、CORS 未許可のクロスオリジン音源では無音化する可能性がある — **未検証。Web Audio 一般の挙動からの推測** | 未検証 |
 
-### 公開前に対応すべき項目（メモ）
+### ウェブストア申請
 
-- **スクリーンショット（1280×800）の元キャプチャが未用意**。実際の再生画面が必要なため、
-  合成テンプレートまでは用意済み（[`assets/README.md`](assets/README.md) の「スクリーンショット」節）
-- マーキータイル（1400×560）未作成。任意項目だが、無いと「注目」枠に載る資格がない
-- 開発者登録料の支払いと開発者アカウントの作成
+申請フォームの記入内容・画像・チェックリストは [`store/listing.md`](store/listing.md)、
+プライバシーポリシーは [`docs/privacy-policy.md`](docs/privacy-policy.md)。
+
+```
+python scripts/package.py            # dist/pitch-shifter-<version>.zip を生成
+bash scripts/build-screenshot.sh     # store/screenshot-1-1280x800.png を再生成
+```
+
+残作業: 開発者アカウント登録（US$5）→ zip アップロード → 掲載情報をコピー → 審査提出。
+マーキータイル（1400×560）は任意のため未作成。
 
 ---
 
@@ -151,7 +157,9 @@ popup.html / popup.js  操作 UI とメッセージ送信
 soundtouch-worklet.js  SoundTouchJS 公式 AudioWorklet（WSOLA エンジン／無改変同梱）
 icons/                 拡張に同梱する PNG（16/32/48/128）
 assets/                画像の原本（SVG / 合成テンプレート）と書き出し手順
-store/                 ウェブストア申請用の画像
+store/                 ウェブストア申請用の画像と掲載文
+scripts/               提出用 zip 生成・スクリーンショット生成
+docs/                  設計メモとプライバシーポリシー
 ```
 
 画像素材はすべて `assets/` の SVG から headless Chrome で再生成できます
