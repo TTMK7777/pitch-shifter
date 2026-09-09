@@ -6,7 +6,16 @@
 
 ## [Unreleased]
 
+## [1.1] - 2026-09-09
+
+Chrome ウェブストア初回申請に向けた整備。拡張本体の挙動に変更なし。
+
 ### Added
+- `docs/privacy-policy.md` — プライバシーポリシー（日英）。ストア申請の必須 URL
+- `store/listing.md` — ストア掲載文・権限の理由・提出前チェックリスト
+- `store/screenshot-1-1280x800.png` — スクリーンショット（ポップアップ実画面を合成）
+- `scripts/package.py` — 提出用 zip 生成（manifest 参照ファイルの同梱漏れを検査）
+- `scripts/build-screenshot.sh` — スクリーンショットを headless Chrome だけで再生成
 - リポジトリ整備: `LICENSE`(MIT) / `THIRD_PARTY_NOTICES.md` / `docs/architecture.md` /
   `CHANGELOG.md` / `.gitignore` を追加
 - README を全面拡充（権限とプライバシー、既知の制限、メッセージ契約、想定ユースケースを追記）
@@ -30,7 +39,6 @@
 
 ### Known Issues
 - 設定は永続化されない。タブのリロードでピッチ・EQ は初期値へ戻る
-- 拡張アイコン (`icons/`) 未同梱。ウェブストア公開には必須
 
 ## [1.0] - 2026-06-20
 
@@ -41,5 +49,6 @@
 - 音質強化: ステレオの広がり調整（0〜200%、M/S マトリクス）
 - ポップアップを開いた際の状態復元（`GET_STATE`）
 
-[Unreleased]: https://github.com/TTMK7777/pitch-shifter/compare/v1.0...HEAD
+[Unreleased]: https://github.com/TTMK7777/pitch-shifter/compare/v1.1...HEAD
+[1.1]: https://github.com/TTMK7777/pitch-shifter/compare/v1.0...v1.1
 [1.0]: https://github.com/TTMK7777/pitch-shifter/releases/tag/v1.0
