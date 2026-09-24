@@ -139,7 +139,7 @@ DOM の読み取り・改変や、ページ内容の送信は行いません。
 プライバシーポリシーは [`docs/privacy-policy.md`](docs/privacy-policy.md)。
 
 ```
-python scripts/package.py            # dist/pitch-shifter-<version>.zip を生成
+python scripts/package.py            # dist/pitch-shifter-<version>.zip を生成（sha256 を表示）
 bash scripts/build-screenshot.sh     # store/screenshot-1-1280x800.png を再生成
 ```
 
@@ -226,4 +226,7 @@ docs/                  設計メモとプライバシーポリシー
   → 内訳は [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)
 
 `soundtouch-worklet.js` は SoundTouchJS（LGPL）を**無改変**で同梱しています。
-差し替え可能かつライセンス表記を保持した形での配布であり、LGPL の要件を満たす想定です。
+差し替え可能かつライセンス表記を保持した形での配布であり、LGPL 本文（[`licenses/LGPL-2.1.txt`](licenses/LGPL-2.1.txt)）も
+リポジトリと配布 zip の両方に同梱しています。
+
+セキュリティ報告は [`SECURITY.md`](SECURITY.md)、貢献方法は [`CONTRIBUTING.md`](CONTRIBUTING.md) を参照してください。
