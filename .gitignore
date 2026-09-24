@@ -32,3 +32,7 @@ todo.md
 # 実際の閲覧画面が写り込むため、意図しない個人情報の混入を防ぐ目的で除外する。
 # 合成後の store/*.png は目視確認の上でコミットする。
 assets/capture.png
+
+# Python バイトコード（scripts/ 実行時に生成）
+__pycache__/
+*.pyc
