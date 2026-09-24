@@ -103,7 +103,7 @@ https://github.com/TTMK7777/pitch-shifter/blob/main/docs/privacy-policy.md
 
 ## 提出前チェック
 
-- [ ] `dist/pitch-shifter-<version>.zip` を `scripts/package.sh` で生成し、中身が `manifest.json` / `content.js` / `popup.*` / `soundtouch-worklet.js` / `icons/` のみであること
+- [ ] `dist/pitch-shifter-<version>.zip` を `python scripts/package.py` で生成し、中身が `manifest.json` / `content.js` / `popup.*` / `soundtouch-worklet.js` / `icons/` / `licenses/LGPL-2.1.txt` のみであること（出力の sha256 を控える）
 - [ ] `manifest.json` の `version` と git タグが一致（`.github/workflows/version-check.yml`）
 - [ ] スクリーンショットに個人情報（アカウント名・閲覧履歴）が写っていない
 - [ ] 開発者アカウント登録（US$5、ユーザー作業）

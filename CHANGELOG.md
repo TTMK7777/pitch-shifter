@@ -6,6 +6,16 @@
 
 ## [Unreleased]
 
+### Added
+- `licenses/LGPL-2.1.txt` — 同梱 SoundTouchJS worklet のライセンス本文。配布 zip にも同梱（`scripts/package.py`）
+- `SECURITY.md` / `CONTRIBUTING.md` / `CODE_OF_CONDUCT.md` — 公開リポジトリとしての窓口と規約
+- `scripts/package.py` が生成 zip の sha256 を表示
+- `THIRD_PARTY_NOTICES.md` に上流 npm パッケージ名・同梱ファイルの sha256 を記録
+
+### Changed
+- `todo.md` を git 管理外へ（ローカル作業メモ）。`AGENTS.md` の参照を更新
+- `store/listing.md` の提出前チェックが存在しない `scripts/package.sh` を指していたのを `scripts/package.py` に修正
+
 ## [1.1] - 2026-09-09
 
 Chrome ウェブストア初回申請に向けた整備。拡張本体の挙動に変更なし。

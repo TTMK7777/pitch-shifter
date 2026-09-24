@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Chrome ウェブストア提出用 zip を生成する。
 
-拡張の実行に必要なファイルだけを同梱し、原本 (assets/) やストア素材 (store/)、
-ドキュメントは含めない。依存パッケージなし（標準ライブラリのみ）。
+拡張の実行に必要なファイルと同梱ライブラリのライセンス本文だけを同梱し、
+原本 (assets/) やストア素材 (store/)、ドキュメントは含めない。依存パッケージなし（標準ライブラリのみ）。
 
 使い方:  python scripts/package.py
 出力:    dist/pitch-shifter-<manifest.version>.zip
 """
+import hashlib
 import json
 import sys
 import zipfile
@@ -25,6 +26,7 @@ INCLUDE = [
     "icons/icon32.png",
     "icons/icon48.png",
     "icons/icon128.png",
+    "licenses/LGPL-2.1.txt",  # 同梱 worklet (LGPL-2.1+) のライセンス本文
 ]
 
 
@@ -63,7 +65,9 @@ def main() -> int:
 
     with zipfile.ZipFile(out) as zf:
         names = zf.namelist()
+    digest = hashlib.sha256(out.read_bytes()).hexdigest()
     print(f"OK {out.relative_to(ROOT)} ({out.stat().st_size} bytes, {len(names)} files)")
+    print(f"   sha256 {digest}")
     for n in names:
         print("  ", n)
     return 0
