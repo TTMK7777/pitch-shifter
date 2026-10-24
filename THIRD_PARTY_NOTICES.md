@@ -1,5 +1,12 @@
 # サードパーティ ライセンス表記
 
+NOTE: The MIT license in `LICENSE` covers only the original code of this project.
+This repository also bundles or derives from third-party code under different
+licenses (LGPL-2.1-or-later, BSD-3-Clause, MIT). Those components retain their
+own licenses and are NOT relicensed by `LICENSE`.
+
+See below for the full component-by-component breakdown.
+
 本拡張機能は以下の第三者コードを同梱／利用しています。各コンポーネントは
 それぞれのライセンスに従います（ルートの `LICENSE`（MIT）は本プロジェクト
 独自コードのみを対象とし、以下を再ライセンスするものではありません）。

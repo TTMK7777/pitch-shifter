@@ -19,12 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE: This MIT license covers the ORIGINAL code of this project only.
-This repository also bundles or derives from third-party code under different
-licenses (LGPL-2.1-or-later, BSD-3-Clause, MIT). Those components retain their
-own licenses and are NOT relicensed by this file.
-
-See THIRD_PARTY_NOTICES.md for the full component-by-component breakdown.

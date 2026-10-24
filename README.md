@@ -1,5 +1,7 @@
 # Pitch Shifter
 
+<img src="store/screenshot-1-1280x800.png" alt="Pitch Shifter pitch, EQ, and stereo width controls / ピッチ・EQ・ステレオ幅調整画面" width="640">
+
 再生中の動画・音楽の **ピッチ（音程）だけ** をリアルタイムに上下する Chrome 拡張機能。
 再生速度は一切変えません。
 
@@ -17,8 +19,18 @@
 
 ---
 
+## English
+
+Pitch Shifter changes audio pitch in real time without changing playback speed.
+This Chrome extension processes HTML `<video>` and `<audio>` elements inside your browser using the Web Audio API.
+Adjust pitch by ±1 octave in 1-cent steps, with three-band EQ and stereo width controls.
+Choose between Jungle and WSOLA engines, with automatic fallback to Jungle.
+It makes no network requests and collects no data.
+It is not yet published on the Chrome Web Store; follow the [developer-mode installation steps](#インストール).
+
 ## 目次
 
+- [English](#english)
 - [想定ユースケース](#想定ユースケース)
 - [機能](#機能)
 - [インストール](#インストール)
