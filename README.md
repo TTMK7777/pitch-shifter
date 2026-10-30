@@ -7,6 +7,8 @@
 ピッチシフトと簡易 EQ・ステレオ拡張を適用します。**外部通信ゼロ・データ収集ゼロ**、
 すべてブラウザ内で完結します。
 
+保守・改修する人は [MAINTAINING.md](MAINTAINING.md)（ファイルの種類・逆引き表・確認手順・トラブル表・用語集）から読んでください。
+
 | 項目 | 内容 |
 |------|------|
 | 種別 | Chrome 拡張機能 (Manifest V3) |
@@ -160,7 +162,10 @@ assets/                画像の原本（SVG / 合成テンプレート）と書
 store/                 ウェブストア申請用の画像と掲載文
 scripts/               提出用 zip 生成・スクリーンショット生成
 docs/                  設計メモとプライバシーポリシー
+MAINTAINING.md         保守ガイド（逆引き表・確認手順・トラブル表・用語集）
 ```
+
+各フォルダ・文書へのリンク: [`assets/`](assets/README.md)・[`store/`](store/listing.md)・[`scripts/`](scripts/package.py)・[`docs/`](docs/architecture.md)・[`MAINTAINING.md`](MAINTAINING.md)
 
 画像素材はすべて `assets/` の SVG から headless Chrome で再生成できます
 （追加の依存パッケージなし）。手順とサイズ要件は [`assets/README.md`](assets/README.md) を参照。
