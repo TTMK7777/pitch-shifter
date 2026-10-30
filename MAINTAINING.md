@@ -25,7 +25,7 @@
 - 画像の作り方: [assets/README.md](assets/README.md)
 - 同梱している他人のコード: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
 - 現行方針の食い違い: [SECURITY.md](SECURITY.md) の "Supported versions" はストア公開済みを前提に書かれているが、[README.md](README.md) の「インストール」と「ウェブストア申請」の残作業が現状（ストア未公開）。迷ったら README を正とする
-- [AGENTS.md](AGENTS.md) が「現在地」として読めと指すローカルメモは `.gitignore` でコミット対象外なので、clone しただけでは存在しない（`.gitignore` の「セッション内部メモ」の項に名前がある）
+- [AGENTS.md](AGENTS.md) が「現在地」として読めと指すローカルメモは `.gitignore` でコミット対象外なので、clone しただけでは存在しない（`.gitignore` の「セッション内部メモ」の項に名前がある）。[AGENTS.md](AGENTS.md) の指示どおり、そのメモが無いときは [README.md](README.md) と [CHANGELOG.md](CHANGELOG.md) の `[Unreleased]` を現在地として読む
 
 ## よくある作業（逆引き）
 
@@ -37,18 +37,20 @@
 | 低音・中音・高音の中心周波数や幅を変える（今は 200 Hz・1 kHz・3.5 kHz、±12 dB） | `content.js` の `ensureChain`（`frequency.value`・`Q.value`）、範囲は `popup.html` の `id="bass"`・`"mid"`・`"treble"` の `min`・`max`。数値を書き写している文書: [README.md](README.md)（「音質強化」の表）、[docs/architecture.md](docs/architecture.md) の §5、[store/listing.md](store/listing.md)（詳細説明・英語説明の「±12 dB」） | 「直したあとの確認」+ 実機で各つまみを動かして音の変化を聞く |
 | ステレオの広がりの範囲や初期値（今は 0〜200%・初期 100%）を変える | `popup.html` の `id="width"`（`min`・`max`・`step`・`value`、表示の初期文字 `100%`）、`popup.js` の `enhanceReset`（リセット時に `width.value = 100`）、`content.js` の `currentWidth`（既定 `1.0`）と `applyStereoWidth`。書き写している文書: [README.md](README.md)（「音質強化」の表）、[docs/architecture.md](docs/architecture.md) の §5、[store/listing.md](store/listing.md) | 「直したあとの確認」+ 実機で 0%（モノラル）と 200% を聞き比べる |
 | ポップアップの文言（エンジンの説明など）を変える | エンジン説明は 2 か所: `popup.html` のボタン内の短い説明（`engJungle`・`engWsola`）と、`popup.js` の `ENGINE_NOTES`（ボタンを押したとき下に出る 1 行）。同じ内容を書いた文書: [README.md](README.md)（「ピッチエンジンの切替」の表）、[store/listing.md](store/listing.md)。両者は自動では揃わないので手で合わせる | `node --check popup.js`（文法だけ）+ 実機でポップアップを開いて目で見る |
-| 拡張の権限（今は `activeTab`・`scripting`・`<all_urls>`）を足す・外す | `manifest.json` の `permissions`・`host_permissions`。**同じ PR で**次も直す: [README.md](README.md)（「要求している権限」の表）、[SECURITY.md](SECURITY.md)（"What this extension does and does not do"）、[docs/privacy-policy.md](docs/privacy-policy.md)（英語の表と日本語の表の両方）、[store/listing.md](store/listing.md)（「権限の理由」の表）。方針は [CONTRIBUTING.md](CONTRIBUTING.md) | `python -B scripts/package.py` が `OK` を出すこと + 拡張を再読み込みして警告が出ないこと |
-| 拡張が使うファイルを足す・名前を変える | そのファイル、`manifest.json`（`content_scripts`・`web_accessible_resources` など）、`scripts/package.py` の `INCLUDE`。[store/listing.md](store/listing.md) の「提出前チェック」にある zip の中身の一覧も手で合わせる | `python -B scripts/package.py`。`manifest.json` が参照するのに `INCLUDE` に無いファイルがあると `ERROR: manifest が参照しているのに同梱されていません` で止まる（実際に確認済み）。逆に `INCLUDE` にあるが manifest が参照しないファイルや、manifest 以外（`popup.html` が読む `popup.js` など）の漏れは検出されないので、zip の一覧を目で確認する |
-| popup と content の間のメッセージ（`SET_PITCH` など）を変える | 送る側 `popup.js`、受ける側 `content.js` の `chrome.runtime.onMessage` の分岐（両方同時に）。書き写している文書: [README.md](README.md)（「メッセージ契約」の表）、[docs/architecture.md](docs/architecture.md) の §2・§3 | 「直したあとの確認」+ 実機でポップアップを開き直して、表示が復元されるか（`GET_STATE`）も見る |
-| バージョンを上げる | `manifest.json` の `version`（ストアはこの値だけで更新を判定する）。手で合わせる: [README.md](README.md) 冒頭の表の「バージョン」、[CHANGELOG.md](CHANGELOG.md)（`[Unreleased]` の中身を新しい版の見出しへ移し、末尾の比較リンクも足す）。リリース時は `v` + `version`（`version` が `1.2` ならタグ `v1.2`）のタグを打つ | タグを push すると `.github/workflows/version-check.yml` がタグと `manifest.json` の `version` を突き合わせる（ずれていれば赤）。この検査はタグ push 時にしか動かず、README・CHANGELOG の食い違いは検出しない |
+| 拡張の権限（今は `activeTab`・`scripting`・`<all_urls>`）を足す・外す | `manifest.json` の `permissions`・`host_permissions`。**同じ PR で**次も直す: [README.md](README.md)（「要求している権限」の表）、[SECURITY.md](SECURITY.md)（"What this extension does and does not do"）、[docs/privacy-policy.md](docs/privacy-policy.md)（英語の表と日本語の表の両方）、[store/listing.md](store/listing.md)（「権限の理由」の表）。権限を「持たない」と書いた文書もある（[docs/architecture.md](docs/architecture.md) の §2 と §7 の `storage` の記述）。方針は [CONTRIBUTING.md](CONTRIBUTING.md) | `git grep -n "<権限名>"`（例: `git grep -n "activeTab"`）で出た所を全部合わせる。`scripts/package.py` は権限を見ないので、`OK` が出ても権限の整合は確かめられない。拡張を再読み込みして警告が出ないことも見る |
+| 拡張が使うファイルを足す・名前を変える | そのファイル、`manifest.json`（`content_scripts`・`web_accessible_resources` など）、`scripts/package.py` の `INCLUDE`。[store/listing.md](store/listing.md) の「提出前チェック」にある zip の中身の一覧も手で合わせる | `python -B scripts/package.py`。照合されるのは manifest の 5 つのキー（`icons`・`action.default_icon`・`action.default_popup`・`content_scripts[].js`・`web_accessible_resources[].resources`）が指すファイルだけで、`INCLUDE` に無ければ `ERROR: manifest が参照しているのに同梱されていません` で止まる（実測済み）。それ以外のキーで参照したファイル（例: `background.service_worker` に書いたファイルは、`OK` のまま通ることを実測した）や、`popup.html` が読む `popup.js` などの漏れは検出されないので、zip の一覧を目で確認する |
+| popup と content の間のメッセージ（`SET_PITCH` など）を変える | 送る側 `popup.js`、受ける側 `content.js` の `chrome.runtime.onMessage` の分岐（両方同時に）。書き写している文書: [README.md](README.md)（「メッセージ契約」の表）、[docs/architecture.md](docs/architecture.md) の §2・§3。メッセージ名で `git grep -n "SET_PITCH"` のように探し、出た所を全部合わせる | 「直したあとの確認」+ 実機でポップアップを開き直して、表示が復元されるか（`GET_STATE`）も見る |
+| バージョンを上げる | `manifest.json` の `version`（ストアはこの値だけで更新を判定する）。手で合わせる: [README.md](README.md) 冒頭の表の「バージョン」、[CHANGELOG.md](CHANGELOG.md)（`[Unreleased]` の中身を新しい版の見出しへ移し、末尾の比較リンクも足す）。リリース時は `v` + `version`（`version` が `1.2` ならタグ `v1.2`）のタグを打つ。`git grep -n "<今の版>" -- README.md manifest.json CHANGELOG.md` で版を書いた所を探せる | タグを push すると `.github/workflows/version-check.yml` がタグと `manifest.json` の `version` を突き合わせる（ずれていれば赤）。この検査はタグ push 時にしか動かず、README・CHANGELOG の食い違いは検出しない |
 | 同梱の SoundTouch（`soundtouch-worklet.js`）を更新する | ファイル自体を入れ替える（編集はしない）。[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) の版・上流パッケージ名・`sha256` を新しいファイルに合わせる | 次のコマンドの出力が、`THIRD_PARTY_NOTICES.md` の `sha256` と一致すること: `python -B -c "import hashlib;print(hashlib.sha256(open('soundtouch-worklet.js','rb').read()).hexdigest())"`（現状は一致を確認済み） |
 | アイコン・ストア画像を作り直す | 原本の `assets/icon.svg`・`assets/promo-small.svg`・`assets/screenshot-template.html`。書き出し手順は [assets/README.md](assets/README.md)。`assets/icon.svg` を直したら `assets/promo-small.svg` の同じ図形も手で揃える | 書き出した PNG の寸法と見た目を目で確認（確認用コマンドも [assets/README.md](assets/README.md) の「検証」にある） |
 | ストア申請の文面を変える | [store/listing.md](store/listing.md)。機能の説明を変えたなら [README.md](README.md) も合わせる | 文面を目で読み、概要が 132 文字以内か数える |
 
 ## 直したあとの確認
 
+コマンドはすべてリポジトリの直下で実行します。macOS/Linux で `python` が無いときは `python3` に読み替えてください（CI も `python3` を使っています）。
+
 1. 文法チェック（Node.js が入っている場合）: `node --check content.js` と `node --check popup.js` — どちらもエラー無しで終われば OK。**見つけられるのは文法エラーだけ**で、存在しない関数を呼ぶ・要素の `id` を間違える、といった誤りは見つからない
-2. 配布物の組み立て: `python -B scripts/package.py` — 先頭が `OK dist\pitch-shifter-<version>.zip` で、同梱ファイル一覧に `manifest.json`・`content.js`・`popup.html`・`popup.js`・`soundtouch-worklet.js`・`icons/`・`licenses/LGPL-2.1.txt` が並ぶこと。`dist/` は `.gitignore` で除外されている。sha256 は実行のたびに変わる（zip に時刻が入るため）ので、値の比較には使えない
+2. 配布物の組み立て: `python -B scripts/package.py` — 先頭が `OK dist\pitch-shifter-<version>.zip`（macOS/Linux では `dist/…`）で、同梱ファイル一覧に `manifest.json`・`content.js`・`popup.html`・`popup.js`・`soundtouch-worklet.js`・`icons/`・`licenses/LGPL-2.1.txt` が並ぶこと。`dist/` は `.gitignore` で除外されている。sha256 は、同じファイルのまま続けて 2 回実行すれば同じ値になる（実測）。zip に入るのは各ファイルの更新時刻なので、clone し直す・ファイルを保存し直すと変わり、別の環境で作った zip との比較には使えない
 3. `manifest.json` の JSON が壊れていないか: `python -B -c "import json;print(json.load(open('manifest.json', encoding='utf-8'))['version'])"` が版を表示すれば OK
 4. 実機で確かめる（**自動では確かめられない部分**。音を出す・聞く作業なので、この整理作業では実行していない）
    1. 普段使いと別の Chrome プロファイルを用意する（拡張が全サイトに効くため、作業用に分けておくと安全）
@@ -69,7 +71,7 @@
 | `python -B scripts/package.py` が `ERROR: 同梱対象が見つかりません` | `scripts/package.py` の `INCLUDE` | ファイルの名前変更・削除で `INCLUDE` と実物がずれた |
 | `python -B scripts/package.py` が `ERROR: manifest が参照しているのに同梱されていません` | `manifest.json` と `INCLUDE` | manifest にファイルを足して `INCLUDE` に足し忘れた |
 | タグを打ったら GitHub Actions の "version check" が赤 | `manifest.json` の `version` とタグ名 | タグ `v1.2` に対し `version` が `"1.2"` になっていない。直してタグを打ち直す |
-| `bash scripts/build-screenshot.sh` が Chrome を見つけられない | スクリプト先頭の `CHROME` | 既定値は Windows の Chrome の場所。別の場所なら環境変数 `CHROME` で渡す。このスクリプトは実行すると**コミット済みの** `store/screenshot-1-1280x800.png` を上書きする |
+| `bash scripts/build-screenshot.sh` が Chrome を見つけられない | スクリプト先頭の `CHROME` | 既定値は Windows の Chrome の場所。別の場所なら環境変数 `CHROME` で渡す。このスクリプトは実行すると**コミット済みの** `store/screenshot-1-1280x800.png` と、手作業で撮った `assets/capture.png`（`.gitignore` 対象なので git では戻せない）を上書きする。実行前に `assets/capture.png` を別の場所へコピーしておく |
 
 ## AI なしでは保守できない所
 
