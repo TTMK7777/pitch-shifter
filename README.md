@@ -1,5 +1,14 @@
 # Pitch Shifter
 
+[![License: MIT + third-party](https://img.shields.io/badge/License-MIT_%2B_third--party-yellow.svg)](THIRD_PARTY_NOTICES.md)
+![Manifest V3](https://img.shields.io/badge/Chrome-Manifest_V3-4285F4?logo=googlechrome&logoColor=white)
+![No network](https://img.shields.io/badge/network-none-success)
+![Dependencies](https://img.shields.io/badge/dependencies-0-success)
+
+**English:** A Chrome extension that shifts the pitch of any playing video or audio in real time **without changing playback speed** — ±1 octave in 1-cent steps, two pitch engines (low-latency / high-quality), plus a simple EQ and stereo widener. Zero dependencies, no network access, no data collection. Install from source: see [インストール](#インストール) (load the folder via `chrome://extensions` → *Load unpacked*).
+
+![Pitch Shifter popup: pitch slider, semitone buttons, engine switch, EQ](store/screenshot-1-1280x800.png)
+
 再生中の動画・音楽の **ピッチ（音程）だけ** をリアルタイムに上下する Chrome 拡張機能。
 再生速度は一切変えません。
 
